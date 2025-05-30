@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    html, body {
+    margin: 0;
+    padding: 0;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      border: 1px solid #ededf1;
+      background-color: #ffffff;
+    }
+
+    th,
+    td {
+      border: none;
+      padding: 8px;
+      text-align: left;
+      vertical-align: middle;
+      font: 12px inter, sans-serif;
+      color: #2c3344;
+    }
+
+    th {
+      border-bottom: 1px solid #ededf1;
+      font-weight :bold;
+    }
+    
+    select {
+      width: 70%;
+      color: #2c3344;
+      font: 12px Inter, sans-serif; 
+    }
+
+    /* Shortened column width styling */
+    table :is(th, td):nth-child(1) {
+      width: 5%;
+    }
+
+    table :is(th, td):nth-child(2) {
+      width: 50%;
+    }
+
+    table :is(th, td):nth-child(3) {
+      width: 25%;
+    }
+
+    table :is(th, td):nth-child(4) {
+      display: none;
+    }
+
+    table :is(th, td):nth-child(5) {
+      width: 20%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Item Number</th>
+        <th>Ball Type</th>
+        <th>Required Quantity in Dozen</th>
+        <th style="display:none;">Amount</th>
+        <th>Total Purchase in AUD $</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Senior Division 1st XI Only<br>Turf Cricket – Red<br>$135 ea including GST</td>
+        <td>
+          <select onchange="calculateTotal(this)">
+            <option value="0">0</option>
+            <option value="0.5">½</option>
+            <option value="1">1</option>
+            <option value="1.5">1½</option>
+            <option value="2">2</option>
+            <option value="2.5">2½</option>
+            <option value="3">3</option>
+            <option value="3.5">3½</option>
+            <option value="4">4</option>
+            <option value="4.5">4½</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td style="display:none;">135</td>
+        <td class="total-amount">0</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Senior Division 1st XI only – one day games<br>Turf Cricket – White<br>$135 ea including GST</td>
+        <td>
+          <select onchange="calculateTotal(this)">
+            <option value="0">0</option>
+            <option value="0.5">½</option>
+            <option value="1">1</option>
+            <option value="1.5">1½</option>
+            <option value="2">2</option>
+            <option value="2.5">2½</option>
+            <option value="3">3</option>
+            <option value="3.5">3½</option>
+            <option value="4">4</option>
+            <option value="4.5">4½</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td style="display:none;">135</td>
+        <td class="total-amount">0</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Division 1 – 1st XI only<br>Kookaburra Platinum – Red<br>$85 ea including GST</td>
+        <td>
+          <select onchange="calculateTotal(this)">
+            <option value="0">0</option>
+            <option value="0.5">½</option>
+            <option value="1">1</option>
+            <option value="1.5">1½</option>
+            <option value="2">2</option>
+            <option value="2.5">2½</option>
+            <option value="3">3</option>
+            <option value="3.5">3½</option>
+            <option value="4">4</option>
+            <option value="4.5">4½</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td style="display:none;">85</td>
+        <td class="total-amount">0</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Division 1 - 1st XI only – one day games<br>Kookaburra Platinum – White<br>$85 ea including GST</td>
+        <td>
+          <select onchange="calculateTotal(this)">
+            <option value="0">0</option>
+            <option value="0.5">½</option>
+            <option value="1">1</option>
+            <option value="1.5">1½</option>
+            <option value="2">2</option>
+            <option value="2.5">2½</option>
+            <option value="3">3</option>
+            <option value="3.5">3½</option>
+            <option value="4">4</option>
+            <option value="4.5">4½</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td style="display:none;">85</td>
+        <td class="total-amount">0</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>All Other 2 day division ball<br>Kookaburra Gold – Red<br>$65 ea including GST</td>
+        <td>
+          <select onchange="calculateTotal(this)">
+            <option value="0">0</option>
+            <option value="0.5">½</option>
+            <option value="1">1</option>
+            <option value="1.5">1½</option>
+            <option value="2">2</option>
+            <option value="2.5">2½</option>
+            <option value="3">3</option>
+            <option value="3.5">3½</option>
+            <option value="4">4</option>
+            <option value="4.5">4½</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td style="display:none;">65</td>
+        <td class="total-amount">0</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>All other 2 day division ball - Saturday – one day games<br>Kookaburra Gold – White<br>$65 ea including GST</td>
+        <td>
+          <select onchange="calculateTotal(this)">
+            <option value="0">0</option>
+            <option value="0.5">½</option>
+            <option value="1">1</option>
+            <option value="1.5">1½</option>
+            <option value="2">2</option>
+            <option value="2.5">2½</option>
+            <option value="3">3</option>
+            <option value="3.5">3½</option>
+            <option value="4">4</option>
+            <option value="4.5">4½</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td style="display:none;">65</td>
+        <td class="total-amount">0</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>All one day divisions Saturday & Sunday<br>Kookaburra Silver – Red<br>$53 ea including GST</td>
+        <td>
+          <select onchange="calculateTotal(this)">
+            <option value="0">0</option>
+            <option value="0.5">½</option>
+            <option value="1">1</option>
+            <option value="1.5">1½</option>
+            <option value="2">2</option>
+            <option value="2.5">2½</option>
+            <option value="3">3</option>
+            <option value="3.5">3½</option>
+            <option value="4">4</option>
+            <option value="4.5">4½</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td style="display:none;">53</td>
+        <td class="total-amount">0</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>Women’s Division – 142g – white<br>Kookaburra Silver – White<br>$53 ea including GST</td>
+        <td>
+          <select onchange="calculateTotal(this)">
+            <option value="0">0</option>
+            <option value="0.5">½</option>
+            <option value="1">1</option>
+            <option value="1.5">1½</option>
+            <option value="2">2</option>
+            <option value="2.5">2½</option>
+            <option value="3">3</option>
+            <option value="3.5">3½</option>
+            <option value="4">4</option>
+            <option value="4.5">4½</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td style="display:none;">53</td>
+        <td class="total-amount">0</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div id="grand-total" style="margin-top: 20px; font: 13px inter, sans-serif; font-weight: bold; color: #2c3344">
+  Total Amount: AUD $<span id="total-value">0.00</span>
+  </div>
+  <br> 
+  <div style="font: 13px inter, sans-serif; font-weight: bold; color: #2c3344">
+Payment must be made via EFT prior to collection.<br>VTCA Banking Details: Bendigo Bank (BSB: 633-000, Account No: 154930168)
+  </div>
+
+  <script>
+    function calculateTotal(selectElem) {
+      const row = selectElem.closest('tr');
+      const quantity = parseFloat(selectElem.value) || 0;
+      const amount = parseFloat(row.cells[3].textContent) || 0;
+      const total = quantity * 12 * amount;
+      row.querySelector('.total-amount').textContent = total.toFixed(2);
+      // Recalculate grand total
+      let grandTotal = 0;
+      document.querySelectorAll('.total-amount').forEach(cell => {
+        grandTotal += parseFloat(cell.textContent) || 0;
+      });
+      document.getElementById('total-value').textContent = grandTotal.toFixed(2);
+    }
+  </script>
+
+</body>
+
+</html>
